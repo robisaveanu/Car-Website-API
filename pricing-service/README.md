@@ -1,9 +1,7 @@
 # Pricing Service
 
-The Pricing Service is a REST WebService that simulates a backend that
-would store and retrieve the price of a vehicle given a vehicle id as
-input. In this project, you will convert it to a microservice.
-
+The Pricing Service is a REST WebService that simulates a backend that would store and retrieve the price of a vehicle
+given a vehicle id as input.
 
 ## Features
 
@@ -13,7 +11,7 @@ input. In this project, you will convert it to a microservice.
 
 #### TODOs
 
-- Convert the Pricing Service to be a microservice.
+- Implement the `TODOs` within the `PricingService.java` and `PricingController.java` files
 - Add an additional test to check whether the application appropriately generates a price for a given vehicle ID
 
 #### Run the code
