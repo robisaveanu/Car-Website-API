@@ -61,7 +61,7 @@ public class CarControllerTest {
      * @throws Exception when car creation fails in the system
      */
     @Test
-    public void createCar() throws Exception {
+    public void addCar() throws Exception {
         Car car = getCar();
         mvc.perform(
                 post("/cars")
