@@ -23,8 +23,10 @@ import java.util.Collections;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 /**
  * Implements testing of the CarController class.
@@ -96,6 +98,26 @@ public class CarControllerTest {
                 get("/cars/{id}", car.getId())
                         .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
+    }
+
+    /**
+     * Tests the update operation for a car for a given id
+     *
+     * @throws Exception if the update operation  fails
+     */
+    @Test
+    public void updateCar() throws Exception {
+
+        Car car = getCar();
+        car.setCondition(Condition.NEW);
+        mvc.perform(put("/cars/{id}", 1L)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json.write(car).getJson())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.condition", is(Condition.NEW.toString())));
+
     }
 
     /**

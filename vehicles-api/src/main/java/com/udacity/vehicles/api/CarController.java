@@ -71,15 +71,15 @@ class CarController {
 
     /**
      * Updates the information of a vehicle in the system.
-     *
-     * @param id  The ID number for which to update vehicle information.
+     * @param id The ID number for which to update vehicle information.
      * @param car The updated information about the related vehicle.
      * @return response that the vehicle was updated in the system
      */
     @PutMapping("/{id}")
     ResponseEntity<?> put(@PathVariable Long id, @Valid @RequestBody Car car) {
         car.setId(id);
-        Resource<Car> resource = assembler.toResource(carService.save(car));
+        carService.save(car);
+        Resource<Car> resource = assembler.toResource(car);
         return ResponseEntity.ok(resource);
     }
 
