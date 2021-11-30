@@ -25,8 +25,8 @@ public class BoogleMapsApplicationTests {
     @Test
     public void testGetRequest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/maps?lat=1&lon=1")
-                .accept(MediaType.APPLICATION_JSON))
+                        .get("/maps?lat=1&lon=1")
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 

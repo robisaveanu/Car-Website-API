@@ -21,12 +21,12 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
 
+import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Implements testing of the CarController class.
@@ -66,10 +66,10 @@ public class CarControllerTest {
     public void addCar() throws Exception {
         Car car = getCar();
         mvc.perform(
-                post("/cars")
-                        .content(json.write(car).getJson())
-                        .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                        post("/cars")
+                                .content(json.write(car).getJson())
+                                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                                .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isCreated());
     }
 
@@ -81,8 +81,8 @@ public class CarControllerTest {
     @Test
     public void listCars() throws Exception {
         mvc.perform(
-                get("/cars")
-                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                        get("/cars")
+                                .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
     }
 
@@ -95,8 +95,8 @@ public class CarControllerTest {
     public void findCar() throws Exception {
         Car car = getCar();
         mvc.perform(
-                get("/cars/{id}", car.getId())
-                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                        get("/cars/{id}", car.getId())
+                                .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
     }
 
@@ -111,10 +111,10 @@ public class CarControllerTest {
         Car car = getCar();
         car.setCondition(Condition.NEW);
         mvc.perform(put("/cars/{id}", 1L)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json.write(car).getJson())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON_UTF8))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json.write(car).getJson())
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.condition", is(Condition.NEW.toString())));
 
